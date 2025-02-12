@@ -22,6 +22,7 @@ class StringCalculator {
       throw Exception('negatives not allowed ${negatives.join(", ")}');
     }
 
-    return tokens.map((n) => int.parse(n)).fold(0, (sum, n) => sum + n);
+    // Ignore numbers > 1000.
+    return parsedNumbers.where((n) => n <= 1000).fold(0, (sum, n) => sum + n);
   }
 }
