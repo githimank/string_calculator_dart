@@ -1,5 +1,5 @@
-name: untitled_folder
-description: A sample command-line application with basic argument parsing.
+name: string_calculator_dart
+description: A Dart project for the String Calculator Kata.
 version: 0.0.1
 # repository: https://github.com/my_org/my_repo
 
