@@ -12,9 +12,12 @@ class StringCalculator {
       numbersPart = numbers.substring(newlineIndex + 1);
       // Check if delimiter is provided inside square brackets.
       if (delimiterSpec.startsWith('[') && delimiterSpec.endsWith(']')) {
-        // Extract the delimiter without the square brackets.
-        final delimiter = delimiterSpec.substring(1, delimiterSpec.length - 1);
-        delimiterPattern = RegExp.escape(delimiter);
+        // Use a RegExp to extract all delimiters.
+        final regex = RegExp(r'\[(.*?)\]');
+        final matches = regex.allMatches(delimiterSpec);
+        final delimiters = matches.map((m) => m.group(1)!).toList();
+        // Join delimiters with | to create a splitting pattern.
+        delimiterPattern = delimiters.map(RegExp.escape).join('|');
       } else {
         delimiterPattern = RegExp.escape(delimiterSpec);
       }
