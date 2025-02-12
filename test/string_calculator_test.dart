@@ -20,5 +20,9 @@ void main() {
     test('sums unknown number of values', () {
       expect(StringCalculator.add('1,2,3,4'), equals(10));
     });
+
+    test('allows new line as delimiter', () {
+      expect(StringCalculator.add('1\n2,3'), equals(6));
+    });
   });
 }
