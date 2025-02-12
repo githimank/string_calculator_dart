@@ -38,5 +38,9 @@ void main() {
       expect(StringCalculator.add('2,1001'), equals(2));
     });
 
+    test('supports custom delimiters of any length', () {
+      expect(StringCalculator.add('//[***]\n1***2***3'), equals(6));
+    });
+
   });
 }
