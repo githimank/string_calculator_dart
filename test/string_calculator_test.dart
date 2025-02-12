@@ -13,5 +13,10 @@ void main() {
     test('returns the number for a single number input', () {
       expect(StringCalculator.add('1'), equals(1));
     });
+
+
+    test('sums two comma-separated numbers', () {
+      expect(StringCalculator.add('1,2'), equals(3));
+    });
   });
 }
