@@ -34,5 +34,9 @@ void main() {
           throwsA(predicate((e) => e is Exception && e.toString().contains('negatives not allowed -2, -4'))));
     });
 
+    test('ignores numbers greater than 1000', () {
+      expect(StringCalculator.add('2,1001'), equals(2));
+    });
+
   });
 }
