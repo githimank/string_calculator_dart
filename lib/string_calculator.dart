@@ -1,13 +1,6 @@
 class StringCalculator {
-
   static int add(String numbers) {
     if (numbers.isEmpty) return 0;
-
-    // If the input is a single number
-    if (!numbers.contains(',') && !numbers.contains('\n')) {
-      return int.parse(numbers);
-    }
-
 
     String numbersPart = numbers;
     String delimiterPattern = r'[,\n]'; // default delimiters
@@ -15,16 +8,19 @@ class StringCalculator {
     // Check for custom delimiter.
     if (numbers.startsWith('//')) {
       final newlineIndex = numbers.indexOf('\n');
-      // The delimiter is the character(s) between '//' and the newline.
       final delimiterSpec = numbers.substring(2, newlineIndex);
       numbersPart = numbers.substring(newlineIndex + 1);
-
-      // For now, assume a single-character delimiter (without square brackets).
       delimiterPattern = RegExp.escape(delimiterSpec);
     }
 
-    // Split on comma or newline.
-    List<String> tokens = numbersPart.split(RegExp(delimiterPattern));
+    final tokens = numbersPart.split(RegExp(delimiterPattern));
+    final parsedNumbers = tokens.map((t) => int.parse(t)).toList();
+
+    // Check for negative numbers.
+    final negatives = parsedNumbers.where((n) => n < 0).toList();
+    if (negatives.isNotEmpty) {
+      throw Exception('negatives not allowed ${negatives.join(", ")}');
+    }
 
     return tokens.map((n) => int.parse(n)).fold(0, (sum, n) => sum + n);
   }
