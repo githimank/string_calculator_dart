@@ -32,5 +32,5 @@ This implementation was developed incrementally using TDD and micro commits, ens
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/my_org/my_repo.git
-   cd my_repo
+   git clone https://github.com/githimank/string_calculator_dart.git
+   cd string_calculator_dart
