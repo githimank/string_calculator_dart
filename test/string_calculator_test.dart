@@ -24,5 +24,10 @@ void main() {
     test('allows new line as delimiter', () {
       expect(StringCalculator.add('1\n2,3'), equals(6));
     });
+
+    test('supports custom single-character delimiter', () {
+      expect(StringCalculator.add('//;\n1;2'), equals(3));
+    });
+
   });
 }
