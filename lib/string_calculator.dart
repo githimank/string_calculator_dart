@@ -1,4 +1,5 @@
 class StringCalculator {
+
   static int add(String numbers) {
     if (numbers.isEmpty) return 0;
 
@@ -7,6 +8,8 @@ class StringCalculator {
       return int.parse(numbers);
     }
 
-    return 0;
+    // Split the input by commas (we will later add support for newlines).
+    List<String> tokens = numbers.split(',');
+    return tokens.map((n) => int.parse(n)).fold(0, (sum, n) => sum + n);
   }
 }
