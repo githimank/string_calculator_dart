@@ -10,7 +10,14 @@ class StringCalculator {
       final newlineIndex = numbers.indexOf('\n');
       final delimiterSpec = numbers.substring(2, newlineIndex);
       numbersPart = numbers.substring(newlineIndex + 1);
-      delimiterPattern = RegExp.escape(delimiterSpec);
+      // Check if delimiter is provided inside square brackets.
+      if (delimiterSpec.startsWith('[') && delimiterSpec.endsWith(']')) {
+        // Extract the delimiter without the square brackets.
+        final delimiter = delimiterSpec.substring(1, delimiterSpec.length - 1);
+        delimiterPattern = RegExp.escape(delimiter);
+      } else {
+        delimiterPattern = RegExp.escape(delimiterSpec);
+      }
     }
 
     final tokens = numbersPart.split(RegExp(delimiterPattern));
