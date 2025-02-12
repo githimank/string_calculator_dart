@@ -8,8 +8,8 @@ class StringCalculator {
       return int.parse(numbers);
     }
 
-    // Split the input by commas (we will later add support for newlines).
-    List<String> tokens = numbers.split(',');
+    // Split on comma or newline.
+    List<String> tokens = numbers.split(RegExp(r'[,\n]'));
     return tokens.map((n) => int.parse(n)).fold(0, (sum, n) => sum + n);
   }
 }
